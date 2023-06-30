@@ -1,0 +1,16 @@
+
+@import './header.css';
+@import './common.scss';
+@import './reset.scss';
+*{
+  margin: 0;
+  padding: 0;
+}
+.layoutName{
+  color: #fff;
+  height: 64px;
+  line-height: 64px;
+  text-align: center;
+  font-size: 18px;
+  background-color :#4381ff;
+}
