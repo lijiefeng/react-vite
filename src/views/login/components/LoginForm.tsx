@@ -5,20 +5,21 @@ import { useState } from "react";
 import {Login} from "@/api/interface"
 import { UserOutlined, LockOutlined, CloseCircleOutlined } from "@ant-design/icons";
 import { useNavigate } from 'react-router-dom';
-import { setToken } from '@/redux/modules/global/action';
+import { setToken,setUser } from '@/redux/modules/global/action';
 import { store } from '@/redux';
 import { connect } from "react-redux";
-const LoginForm = () =>{
+const LoginForm = (props: any) =>{
   const [form] = Form.useForm();
   const [loading, setLoading] = useState<boolean>(false);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const { setToken ,setUser} = props;
   // 登录
 	const onFinish = async (loginForm: Login.ReqLoginForm) => {
 		try {
-			setLoading(true);
-      
-      store.dispatch(setToken("111"))
-			//navigate("/alert/management")
+			setLoading(true); 
+      setUser(loginForm)
+      console.log(loginForm)
+			navigate("/alert/management")
 		} finally {
 			setLoading(false);
 		}
@@ -26,7 +27,6 @@ const LoginForm = () =>{
   const onFinishFailed = (errorInfo: any) => {
 		console.log("Failed:", errorInfo);
 	};
-  console.log(store.getState().global)
   return(
     <Form
 			form={form}
@@ -63,4 +63,5 @@ const LoginForm = () =>{
 		</Form>
   )
 }
-export default connect(null,null)(LoginForm)  
+const mapDispatchToProps = { setToken ,setUser};
+export default connect(null,mapDispatchToProps)(LoginForm)   

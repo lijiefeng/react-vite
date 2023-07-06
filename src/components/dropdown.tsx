@@ -1,7 +1,7 @@
 import React from 'react';
 import type { MenuProps } from 'antd';
 import { Button, Dropdown } from 'antd';
-
+import { connect } from "react-redux";
 import { useNavigate } from 'react-router-dom';
 const items: MenuProps['items'] = [
   {
@@ -17,7 +17,8 @@ const items: MenuProps['items'] = [
     label: "退出登录",
   }
 ];
-const DropItem: React.FC = () => {
+const DropItem: React.FC = (props: any) => {
+  console.log(props)
   const navigate = useNavigate()
   const onClick: MenuProps['onClick'] = ({ key }) => {
     switch(Number(key)){
@@ -35,9 +36,14 @@ const DropItem: React.FC = () => {
   };
   return (
       <Dropdown menu={{ items,onClick }} placement="bottomLeft"  arrow>
-      <Button>测试</Button>
+      <Button>{props.userInfo.username}</Button>
+      {/* <Button>{store.getState()}</Button> */}
     </Dropdown>
   )
 };
 
-export default DropItem;
+
+const mapStateToProps = (state: any) => state.global;
+export default connect(mapStateToProps, null)(DropItem);
+
+

@@ -4,8 +4,8 @@ import { GlobalState } from "@/redux/interface";
 const globalState: GlobalState = {
 	token: "",
 	userInfo: {
-    user : "admin",
-    password : "123456"
+    username : "",
+    password : ""
   },
 }; 
 const global = (state :GlobalState = globalState,action : AnyAction) =>{
@@ -22,10 +22,11 @@ const global = (state :GlobalState = globalState,action : AnyAction) =>{
   const newState = {...state}
   switch (action.type){
     case "SET_TOKEN" :
-      
       newState.token = action.token
-      console.log(newState)
       return newState
+    case "SET_USER" :
+        newState.userInfo = action.userInfo
+        return newState
     default:
       return state
   }
