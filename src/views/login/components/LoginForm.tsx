@@ -18,7 +18,7 @@ const LoginForm = (props: any) =>{
 		try {
 			setLoading(true); 
       setUser(loginForm)
-      console.log(loginForm)
+    //  console.log(store.getState())
 			navigate("/alert/management")
 		} finally {
 			setLoading(false);

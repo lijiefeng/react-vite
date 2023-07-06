@@ -9,16 +9,16 @@ const globalState: GlobalState = {
   },
 }; 
 const global = (state :GlobalState = globalState,action : AnyAction) =>{
- /*  produce(state,draftState =>{
-    console.log(state,draftState)
-    switch (action.type){
-      case "SET_TOKEN" :
-        draftState.token = action.token;
-        break;
-      default :
-        return draftState
-    }
-  }) */
+ /*   produce(state,draftState =>{
+          console.log(state,draftState)
+          switch (action.type){
+            case "SET_TOKEN" :
+              draftState.token = action.token;
+              break;
+            default :
+              return draftState
+          }
+      }) */
   const newState = {...state}
   switch (action.type){
     case "SET_TOKEN" :
