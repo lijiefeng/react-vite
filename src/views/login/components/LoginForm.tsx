@@ -6,18 +6,33 @@ import {Login} from "@/api/interface"
 import { UserOutlined, LockOutlined, CloseCircleOutlined } from "@ant-design/icons";
 import { useNavigate } from 'react-router-dom';
 import { setToken,setUser } from '@/redux/modules/global/action';
+import {getMenuListActionThunk} from '@/redux/modules/auth/action';
+
+import * as globalAction from '@/redux/modules/global/action';
+
 import { store } from '@/redux';
 import { connect } from "react-redux";
+import { bindActionCreators } from 'redux';
 const LoginForm = (props: any) =>{
   const [form] = Form.useForm();
   const [loading, setLoading] = useState<boolean>(false);
   const navigate = useNavigate();
-  const { setToken ,setUser} = props;
+  const {setUser} = props;
+  //const { onDispatch} = props;
+  // console.log(props,setUser())
+ // const boundActionCreators = bindActionCreators(globalAction, store.dispatch);
+
   // 登录
 	const onFinish = async (loginForm: Login.ReqLoginForm) => {
 		try {
 			setLoading(true); 
       setUser(loginForm)
+    //  console.log(getMenuListActionThunk)
+     // boundActionCreators.setUser(loginForm)
+     
+    //  store.dispatch(getMenuListActionThunk()).then(res =>{
+    //   console.log(store.getState(),"res",res)
+    //  })
     //  console.log(store.getState())
 			navigate("/alert/management")
 		} finally {
@@ -63,5 +78,17 @@ const LoginForm = (props: any) =>{
 		</Form>
   )
 }
-const mapDispatchToProps = { setToken ,setUser};
+
+const mapDispatchToProps = { 
+  setToken : setToken,
+  setUser : setUser
+};
+// const mapDispatchToProps = (dispatch:any) =>{
+//   return {
+//     onDispatch: (val:any) =>{
+//       dispatch(setUser(val))
+//     }
+//   }
+// }
+
 export default connect(null,mapDispatchToProps)(LoginForm)   

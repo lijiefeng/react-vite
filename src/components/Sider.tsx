@@ -10,6 +10,8 @@ const { Sider } = Layout;
 
 const MySider: React.FC = ({collapsed}) => {
   const navgate = useNavigate()
+
+
   return (
     <Sider trigger={null} collapsible collapsed={collapsed.collapsed}>
       <div className="layoutName">基础平台系统</div>

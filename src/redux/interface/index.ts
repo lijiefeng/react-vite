@@ -10,3 +10,8 @@ export interface GlobalState {
 	token: string;
 	userInfo: User;
 }
+
+export interface AutoState {
+	list : Array<string>;
+}
+

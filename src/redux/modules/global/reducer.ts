@@ -32,3 +32,4 @@ const global = (state :GlobalState = globalState,action : AnyAction) =>{
   }
 } 
 export default global
+
